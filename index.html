@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Sailesh</title>
+    <meta name="description" content="I build things for the web. Full Stack Developer Portfolio.">
+
+    <!-- Open Graph tags for SEO -->
+    <meta property="og:title" content="Sailesh - Full Stack Developer">
+    <meta property="og:description" content="Personal portfolio of Sailesh, showcasing web development projects.">
+    <meta property="og:image"
+        content="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80">
+    <meta property="og:url" content="https://saileshportfolio.netlify.app">
+
+    <!-- Favicon (placeholder) -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+
+    <!-- Google Fonts: Inter & Fira Code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- DevIcons & Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- AI System Preloader -->
+    <div id="ai-preloader" class="ai-preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <div class="neural-orbit-preloader"></div>
+                <div class="orbit-wrapper">
+                    <div class="orbit-electron"></div>
+                </div>
+                <div class="neural-pulse"></div>
+                <div class="neural-core">S</div>
+            </div>
+            <div class="preloader-terminal">
+                <div id="preloader-text" class="preloader-text">> INITIALIZING AI_CORE...</div>
+                <div class="progress-container">
+                    <div id="preloader-progress" class="progress-bar"></div>
+                </div>
+                <div id="preloader-percentage" class="preloader-percentage">0%</div>
+            </div>
+        </div>
+        <div class="preloader-bg">
+            <canvas id="preloader-canvas"></canvas>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- Background Animations -->
+    <div id="particles-js"></div>
+    <canvas id="tensor-canvas" class="tensor-bg"></canvas>
+
+    <!-- Navbar -->
+    <nav class="navbar glassmorphism">
+        <div class="nav-container">
+            <a href="#" class="logo">S</a>
+
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button id="theme-toggle" aria-label="Toggle dark/light theme">
+                    <i class="fa-solid fa-sun" id="theme-icon"></i>
+                </button>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Home / Hero Section -->
+        <section id="home" class="hero section">
+            <div class="container hero-content">
+                <div class="hero-text" data-aos="fade-right" data-aos-duration="1000">
+                    <p class="greeting">Hi, my name is</p>
+                    <h1 class="name">Sailesh S</h1>
+                    <h2 class="role">I'm a <span class="typewriter"></span></h2>
+                    <p class="tagline">I build things using AI & Data Science. I'm an undergraduate student passionate
+                        about developing intelligent, scalable, and exceptional digital experiences.</p>
+                    <div class="cta-group">
+                        <a href="#projects" class="btn btn-primary">View Work</a>
+                        <a href="assets/resume.pdf" class="btn btn-outline" target="_blank"
+                            rel="noopener noreferrer">Download Resume</a>
+                    </div>
+                </div>
+                <div class="hero-image" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="image-wrapper glassmorphism">
+                        <img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?auto=format&fit=crop&w=600&q=80"
+                            alt="Sailesh Avatar">
+                    </div>
+                </div>
+            </div>
+            </se <!-- About Section -->
+            <section id="about" class="about section">
+                <div class="container">
+                    <div class="section-tag" data-aos="fade-right">NEURAL_LAYER // 01</div>
+                    <h2 class="section-title" data-aos="fade-up">About Me</h2>
+                    <div class="about-content">
+                        <div class="about-text" data-aos="fade-up" data-aos-delay="100">
+                            <p>Hello! My name is Sailesh and I am extremely passionate about Artificial Intelligence and
+                                Data Science. My technical journey began recently, and since joining Erode Sengunthar
+                                Engineering College in 2024, I've immersed myself completely in modern technologies,
+                                coding challenges, and building impactful projects.</p>
+                            <p>Today, my main focus is mastering intelligent systems, advanced data algorithms, and
+                                full-stack integration to build solutions that actually matter. I am constantly
+                                learning, experimenting, and growing into a capable software engineer.</p>
+
+                            <div class="stats-grid">
+                                <div class="stat-item glassmorphism">
+                                    <h3>AI&DS</h3>
+                                    <p>B.Tech Major</p>
+                                </div>
+                                <div class="stat-item glassmorphism">
+                                    <h3>5+</h3>
+                                    <p>Projects Built</p>
+                                </div>
+                                <div class="stat-item glassmorphism">
+                                    <h3>2028</h3>
+                                    <p>Est. Graduation</p>
+                                </div>
+                            </div>
+
+                            <!-- GitHub Proof of Work -->
+                            <div class="github-stats-wrapper" data-aos="fade-up" data-aos-delay="150">
+                                <div class="stat-tag">SYSTEM_RANK // CONTRIBUTIONS</div>
+                                <div class="github-card-container glassmorphism">
+                                    <img src="https://github-readme-stats.vercel.app/api?username=sailesh-01&show_icons=true&theme=transparent&title_color=38bdf8&icon_color=10b981&text_color=94a3b8&bg_color=00000000&hide_border=true"
+                                        alt="Sailesh's GitHub Stats">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="about-skills" data-aos="fade-up" data-aos-delay="200">
+                            <h3>Core Competencies</h3>
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>Frontend Development</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="progress-line"><span style="width: 90%;"></span></div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>Backend Development</span>
+                                    <span>80%</span>
+                                </div>
+                                <div class="progress-line"><span style="width: 80%;"></span></div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>UI/UX Design</span>
+                                    <span>75%</span>
+                                </div>
+                                <div class="progress-line"><span style="width: 75%;"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="skills section">
+                <div class="container">
+                    <div class="section-tag" data-aos="fade-right">KNOWLEDGE_BASE // 02</div>
+                    <h2 class="section-title" data-aos="fade-up">Technologies I Work With</h2>
+                    <div class="skills-wrapper">
+
+                        <div class="skills-category">
+                            <h3 class="category-title" data-aos="fade-right" data-aos-delay="100">Languages</h3>
+                            <div class="skills-grid" data-aos="fade-left" data-aos-delay="200">
+                                <div class="skill-card glassmorphism"><i
+                                        class="devicon-javascript-plain colored"></i><span>JavaScript</span></div>
+                                <div class="skill-card glassmorphism"><i
+                                        class="devicon-typescript-plain colored"></i><span>TypeScript</span></div>
+                                <div class="skill-card glassmorphism"><i
+                                        class="devicon-python-plain colored"></i><span>Python</span></div>
+                                <div class="skill-card glassmorphism"><i
+                                        class="devicon-html5-plain colored"></i><span>HTML5</span></div>
+                                <div class="skill-card glassmorphism"><i
+                                        class="devicon-css3-plain colored"></i><span>CSS3</span></div>
+                            </div>
+                        </div>
+
+                        <div class="skills-category">
+                            <h3 class="category-title" data-aos="fade-right" data-aos-delay="200">Frameworks &amp;
+                                Libraries</h3>
+                            <div class="skills-grid" data-aos="fade-left" data-aos-delay="300">
+                                <div class="skill-card glassmorphism"><i
+                                        class="devicon-react-original colored"></i><span>React</span></div>
+                                <div class="skill-card glassmorphism"><i
+                                        class="devicon-nextjs-plain"></i><span>Next.js</span></div>
+                                <div class="skill-card glassmorphism"><i
+                                        class="devicon-nodejs-plain colored"></i><span>Node.js</span></div>
+                                <div class="skill-card glassmorphism"><i
+                                        class="devicon-express-original colored"></i><span>Express</span></div>
+                                <div class="skill-card glassmorphism"><i
+                                        class="devicon-tailwindcss-original colored"></i><span>Tailwind</span></div>
+                            </div>
+                        </div>
+
+                        <div class="skills-category">
+                            <h3 class="category-title" data-aos="fade-right" data-aos-delay="300">Tools &amp; Platforms
+                            </h3>
+                            <div class="skills-grid" data-aos="fade-left" data-aos-delay="400">
+                                <div class="skill-card glassmorphism"><i
+                                        class="devicon-git-plain colored"></i><span>Git</span></div>
+                                <div class="skill-card glassmorphism"><i
+                                        class="devicon-docker-plain colored"></i><span>Docker</span></div>
+                                <div class="skill-card glassmorphism"><i
+                                        class="devicon-amazonwebservices-plain-wordmark colored"></i><span>AWS</span>
+                                </div>
+                                <div class="skill-card glassmorphism"><i
+                                        class="devicon-figma-plain colored"></i><span>Figma</span></div>
+                                <div class="skill-card glassmorphism"><i
+                                        class="devicon-mongodb-plain colored"></i><span>MongoDB</span></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="projects section">
+                <div class="container">
+                    <div class="section-tag" data-aos="fade-right">DEPLOYED_MODELS // 03</div>
+                    <h2 class="section-title" data-aos="fade-up">Featured Projects</h2>
+                    <div class="projects-grid">
+
+                        <!-- Project 1: AttendX -->
+                        <div class="project-card glassmorphism" data-aos="fade-up" data-aos-delay="100">
+                            <div class="project-image bootup-image">
+                                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80"
+                                    alt="AttendX Interface">
+                                <div class="bootup-overlay">
+                                    <div class="bootup-text">01001010 01110101 01110011 01110101 01110100</div>
+                                </div>
+                                <div class="project-overlay">
+                                    <div class="project-links">
+                                        <a href="https://github.com/sailesh-01/attendx" target="_blank"
+                                            aria-label="GitHub Repository"><i class="fa-brands fa-github"></i></a>
+                                        <a href="#" class="share-btn" aria-label="Share Project" data-title="AttendX" data-url="https://github.com/sailesh-01/attendx"><i class="fa-solid fa-share-nodes"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <h3 class="project-title">AttendX</h3>
+                                <p class="project-desc">A high-performance attendance management system for institutions
+                                    with automated reporting and mark tracking.</p>
+                                <div class="project-tech">
+                                    <span>Node.js</span>
+                                    <span>Express</span>
+                                    <span>Supabase</span>
+                                    <span>Vercel</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 2: Smart Bus -->
+                        <div class="project-card glassmorphism" data-aos="fade-up" data-aos-delay="200">
+                            <div class="project-image bootup-image">
+                                <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=600&q=80"
+                                    alt="Smart Bus System">
+                                <div class="bootup-overlay">
+                                    <div class="bootup-text">MOV EAX, [BUS_STATE]</div>
+                                </div>
+                                <div class="project-overlay">
+                                    <div class="project-links">
+                                        <a href="https://github.com/sailesh-01/Smart-Bus-Monitoring-System"
+                                            target="_blank" aria-label="GitHub Repository"><i
+                                                class="fa-brands fa-github"></i></a>
+                                        <a href="#" class="share-btn" aria-label="Share Project" data-title="Smart Bus Monitor" data-url="https://github.com/sailesh-01/Smart-Bus-Monitoring-System"><i class="fa-solid fa-share-nodes"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <h3 class="project-title">Smart Bus Monitor</h3>
+                                <p class="project-desc">IoT fleet management solution featuring real-time GPS tracking
+                                    and automated ETA updates for public transit.</p>
+                                <div class="project-tech">
+                                    <span>IoT</span>
+                                    <span>JavaScript</span>
+                                    <span>Sensors</span>
+                                    <span>AI-UI</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 3: Chat-Me -->
+                        <div class="project-card glassmorphism" data-aos="fade-up" data-aos-delay="300">
+                            <div class="project-image bootup-image">
+                                <img src="https://images.unsplash.com/photo-1611746872915-64382b5c76da?auto=format&fit=crop&w=600&q=80"
+                                    alt="Chat-Me App">
+                                <div class="bootup-overlay">
+                                    <div class="bootup-text">CALL RSA_ENCRYPT</div>
+                                </div>
+                                <div class="project-overlay">
+                                    <div class="project-links">
+                                        <a href="https://github.com/sailesh-01/chat-me" target="_blank"
+                                            aria-label="GitHub Repository"><i class="fa-brands fa-github"></i></a>
+                                        <a href="#" class="share-btn" aria-label="Share Project" data-title="Chat-Me" data-url="https://github.com/sailesh-01/chat-me"><i class="fa-solid fa-share-nodes"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <h3 class="project-title">Chat-Me</h3>
+                                <p class="project-desc">A secure, encrypted personal messaging platform built with
+                                    privacy and authentication at its core.</p>
+                                <div class="project-tech">
+                                    <span>Python</span>
+                                    <span>Streamlit</span>
+                                    <span>SQLite</span>
+                                    <span>bcrypt</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 4: Web-Alarm -->
+                        <div class="project-card glassmorphism" data-aos="fade-up" data-aos-delay="400">
+                            <div class="project-image bootup-image">
+                                <img src="https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=600&q=80"
+                                    alt="Web Alarm">
+                                <div class="bootup-overlay">
+                                    <div class="bootup-text">PUSH TIMER_STK</div>
+                                </div>
+                                <div class="project-overlay">
+                                    <div class="project-links">
+                                        <a href="https://github.com/sailesh-01/Web-Alarm" target="_blank"
+                                            aria-label="GitHub Repository"><i class="fa-brands fa-github"></i></a>
+                                        <a href="#" class="share-btn" aria-label="Share Project" data-title="Web-Alarm" data-url="https://github.com/sailesh-01/Web-Alarm"><i class="fa-solid fa-share-nodes"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <h3 class="project-title">Web-Alarm</h3>
+                                <p class="project-desc">Premium digital clock and alarm system with Material Design 3
+                                    aesthetic and persistent data storage.</p>
+                                <div class="project-tech">
+                                    <span>JavaScript</span>
+                                    <span>MD3</span>
+                                    <span>LocalStorage</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section id="experience" class="experience section">
+                <div class="container">
+                    <div class="section-tag" data-aos="fade-right">TRAINING_HISTORY // 04</div>
+                    <h2 class="section-title" data-aos="fade-up">Education & Journey</h2>
+                    <div class="timeline">
+                        <div class="timeline-item" data-aos="fade-up">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content glassmorphism">
+                                <span class="timeline-date">2024 - 2028</span>
+                                <h3 class="timeline-role">B.Tech AI & DS Student</h3>
+                                <span class="timeline-company">Erode Sengunthar Engineering College</span>
+                                <p>Currently pursuing my dream degree in Artificial Intelligence and Data Science. I am
+                                    actively honing my skills in modern web development, intelligent systems, and
+                                    scalable software architectures over this 4-year journey.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content glassmorphism">
+                                <span class="timeline-date">2012 - 2024</span>
+                                <h3 class="timeline-role">Higher Secondary Education</h3>
+                                <span class="timeline-company">Carmel Mat Hr Sec School</span>
+                                <p>Pursued my complete schooling from 1st to 12th grade at this prestigious institution. Specialized in the <strong>CS MAT (Computer Science & Mathematics)</strong> group during my 11th and 12th years, building a strong analytical and technical foundation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="contact section">
+                <div class="container">
+                    <div class="section-tag" data-aos="fade-right">OUTPUT_STREAM // 05</div>
+                    <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
+                    <div class="contact-wrapper">
+                        <div class="contact-info" data-aos="fade-right">
+                            <h3>Let's talk about everything!</h3>
+                            <p>I'm currently looking for new opportunities. Whether you have a question or just want to
+                                say hi, I'll try my best to get back to you!</p>
+
+                            <div class="contact-details">
+                                <div class="contact-method">
+                                    <i class="fa-solid fa-envelope"></i>
+                                    <span>ssaileshm@gmail.com</span>
+                                </div>
+                                <div class="contact-method">
+                                    <i class="fa-solid fa-phone"></i>
+                                    <span>+91 94867 80683</span>
+                                </div>
+                                <div class="contact-method">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <span>Tamil Nadu, INDIA</span>
+                                </div>
+                            </div>
+
+                            <div class="social-links">
+                                <a href="https://github.com/sailesh-01" target="_blank" aria-label="GitHub"><i
+                                        class="fa-brands fa-github"></i></a>
+                                <a href="https://www.linkedin.com/in/sailesh-s-977169349" target="_blank"
+                                    aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                                <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i
+                                        class="fa-brands fa-twitter"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- Netlify Forms functionality built-in -->
+                        <form id="contact-form" class="contact-form glassmorphism" data-aos="fade-left" name="contact"
+                            method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+                            <p class="hidden" style="display:none">
+                                <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+                            </p>
+                            <div class="form-group">
+                                <label for="name">USER_IDENTITY</label>
+                                <input type="text" id="name" name="name" required placeholder="Sailesh">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">COMM_CHANNEL (Email)</label>
+                                <input type="email" id="email" name="email" required placeholder="test@gmail.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">DATA_PAYLOAD (Message)</label>
+                                <textarea id="message" name="message" rows="5" required
+                                    placeholder="Hello, I'd like to talk about..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100" id="submit-btn">
+                                <span class="btn-text">Send Message</span>
+                                <span class="btn-loader hidden"><i class="fa-solid fa-circle-notch fa-spin"></i></span>
+                            </button>
+
+                            <!-- Success Overlay (Terminal Style) -->
+                            <div id="form-success" class="form-success-overlay hidden">
+                                <div class="terminal-header">
+                                    <div class="terminal-dots">
+                                        <span></span><span></span><span></span>
+                                    </div>
+                                    <div class="terminal-title">ai_core_optimizer.exe</div>
+                                </div>
+                                <div class="terminal-body" id="terminal-content">
+                                    <canvas id="binary-canvas" class="binary-canvas"></canvas>
+                                    <div class="scanline"></div>
+                                    <div class="neural-node-container">
+                                        <div class="neural-orbit"></div>
+                                        <div class="neural-node"></div>
+                                    </div>
+                                    <div class="terminal-output" id="terminal-output"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Designed &amp; Built by <span class="highlight">Sailesh</span></p>
+            <p class="copyright">&copy; <span id="current-year"></span>. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Particles.js for background -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <!-- Share Drawer -->
+    <div id="share-drawer" class="share-drawer">
+        <div class="share-header">
+            <h3>TRANSMIT_SIGNAL // SHARE</h3>
+            <button id="close-share" aria-label="Close share menu"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="share-options">
+            <a href="#" id="share-whatsapp" class="share-option"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span></a>
+            <a href="#" id="share-twitter" class="share-option"><i class="fa-brands fa-twitter"></i><span>Twitter</span></a>
+            <a href="#" id="share-linkedin" class="share-option"><i class="fa-brands fa-linkedin"></i><span>LinkedIn</span></a>
+            <button id="share-copy" class="share-option"><i class="fa-solid fa-link"></i><span>Copy Link</span></button>
+        </div>
+    </div>
+    <div id="share-overlay" class="share-overlay"></div>
+
+    <!-- Notification Container -->
+    <div id="notification-container" class="notification-container"></div>
+
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

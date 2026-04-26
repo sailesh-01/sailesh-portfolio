@@ -1,0 +1,12 @@
+[build]
+  publish = "."
+  
+  # When using a build tool, you'd have a command here, e.g. command = "npm run build"
+  # Since this is pure HTML/CSS/JS, no build command is needed.
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
