@@ -240,6 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const formData = new FormData(contactForm);
+            formData.append('form-name', 'contact');
             const submitBtn = contactForm.querySelector('button[type="submit"]');
             
             // Basic Validation
@@ -279,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 showNotification("Network error. Please try again later.", "error");
             } finally {
                 submitBtn.disabled = false;
-                submitBtn.classList.add('loading');
+                submitBtn.classList.remove('loading');
             }
         });
     }
