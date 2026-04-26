@@ -1305,8 +1305,8 @@ footer .highlight {
 /* --- Premium AI Enhancements --- */
 .neural-node-container {
     position: absolute;
-    right: 25px;
-    bottom: 25px;
+    top: 35%;
+    right: 30px;
     width: 100px;
     height: 100px;
     z-index: 10;
