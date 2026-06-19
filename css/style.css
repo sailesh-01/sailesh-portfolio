@@ -424,12 +424,6 @@ ul {
     width: 300px;
     height: 300px;
     object-fit: cover;
-    filter: grayscale(100%);
-    transition: filter 0.3s ease;
-}
-
-.image-wrapper:hover img {
-    filter: none;
 }
 
 @keyframes float {
