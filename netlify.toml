@@ -1,8 +1,6 @@
 [build]
-  publish = "."
-  
-  # When using a build tool, you'd have a command here, e.g. command = "npm run build"
-  # Since this is pure HTML/CSS/JS, no build command is needed.
+  command = "npm run build"
+  publish = "dist"
 
 [[headers]]
   for = "/*"
