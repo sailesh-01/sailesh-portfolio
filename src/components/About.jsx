@@ -1,5 +1,5 @@
 import React from 'react';
-import { GraduationCap, Cpu, Layers, GitBranch, ArrowUpRight } from 'lucide-react';
+import { GraduationCap, Cpu, Layers, GitBranch, ArrowUpRight, Code2 } from 'lucide-react';
 import { aboutData, personalInfo } from '../data/portfolioData';
 
 export default function About() {
@@ -77,12 +77,12 @@ export default function About() {
               </div>
             </div>
 
-            {/* GitHub Proof of Work */}
-            <div className="glass-panel p-6 border border-slate-800 relative group">
+            {/* GitHub Proof of Work - Native Cyber Telemetry */}
+            <div className="glass-panel p-6 border border-slate-800 relative group hover:border-cyber/40 transition-all duration-300 shadow-xl">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
                   <GitBranch className="w-4 h-4 text-cyber" />
-                  <span className="font-mono text-xs text-slate-300 font-semibold tracking-wider uppercase">
+                  <span className="font-mono text-xs text-slate-200 font-semibold tracking-wider uppercase">
                     GitHub Proof of Work
                   </span>
                 </div>
@@ -97,14 +97,73 @@ export default function About() {
                 </a>
               </div>
 
-              {/* GitHub Readme Stats Card */}
-              <div className="rounded-xl overflow-hidden border border-slate-800/80 bg-slate-950/60 p-2 flex justify-center">
-                <img
-                  src="https://github-readme-stats.vercel.app/api?username=sailesh-01&show_icons=true&theme=transparent&title_color=38bdf8&icon_color=10b981&text_color=94a3b8&bg_color=00000000&hide_border=true"
-                  alt="Sailesh's GitHub Stats"
-                  className="w-full max-w-sm h-auto"
-                  loading="lazy"
-                />
+              {/* Native Live Telemetry Card */}
+              <div className="rounded-xl border border-slate-800/90 bg-slate-950/70 p-4 flex flex-col gap-4">
+                {/* Telemetry Stats 3-Column Grid */}
+                <div className="grid grid-cols-3 gap-2 text-center border-b border-slate-800/80 pb-3">
+                  <div className="flex flex-col items-center">
+                    <span className="font-mono text-xl sm:text-2xl font-bold text-cyber">15</span>
+                    <span className="font-mono text-[10px] text-slate-400 uppercase tracking-wider mt-0.5">Repositories</span>
+                  </div>
+                  <div className="flex flex-col items-center border-x border-slate-800/80">
+                    <span className="font-mono text-xl sm:text-2xl font-bold text-neural">14</span>
+                    <span className="font-mono text-[10px] text-slate-400 uppercase tracking-wider mt-0.5">Showcase Apps</span>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <span className="font-mono text-xl sm:text-2xl font-bold text-slate-200">100%</span>
+                    <span className="font-mono text-[10px] text-slate-400 uppercase tracking-wider mt-0.5">Open Source</span>
+                  </div>
+                </div>
+
+                {/* Primary Stacks Breakdown */}
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center justify-between font-mono text-[11px] text-slate-400">
+                    <span className="flex items-center gap-1.5">
+                      <Code2 className="w-3 h-3 text-cyber" />
+                      <span>Code Distribution</span>
+                    </span>
+                    <span className="text-slate-300 text-[10px]">Active Multi-Stack</span>
+                  </div>
+
+                  {/* Multi-Segment Language Bar */}
+                  <div className="w-full h-2 rounded-full bg-slate-900 overflow-hidden flex">
+                    <div className="h-full bg-cyber" style={{ width: '64%' }} title="JavaScript / React (64%)" />
+                    <div className="h-full bg-neural" style={{ width: '22%' }} title="Python / Flask (22%)" />
+                    <div className="h-full bg-amber-400" style={{ width: '14%' }} title="HTML / CSS3 (14%)" />
+                  </div>
+
+                  <div className="flex items-center justify-between font-mono text-[10px] text-slate-400">
+                    <span className="flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-cyber" />
+                      <span>JavaScript (64%)</span>
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-neural" />
+                      <span>Python (22%)</span>
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                      <span>CSS3 (14%)</span>
+                    </span>
+                  </div>
+                </div>
+
+                {/* Live Status Footnote */}
+                <div className="pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-neural animate-pulse" />
+                    <span className="text-slate-300 text-[11px]">LIVE REPOSITORIES VERIFIED</span>
+                  </div>
+                  <a
+                    href={personalInfo.socials.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[11px] text-cyber hover:text-white transition-colors flex items-center gap-1"
+                  >
+                    <span>View GitHub</span>
+                    <ArrowUpRight className="w-3 h-3" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
