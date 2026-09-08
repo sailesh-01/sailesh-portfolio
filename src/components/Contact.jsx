@@ -4,11 +4,47 @@ import { personalInfo, contactData } from '../data/portfolioData';
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
   const [status, setStatus] = useState('idle'); // 'idle' | 'submitting' | 'success' | 'error'
   const [errorMessage, setErrorMessage] = useState('');
 
+  const validate = (name, value) => {
+    const trimmed = value.trim();
+    if (name === 'name') {
+      if (!trimmed) return 'Please fill out this field.';
+      if (trimmed.length < 2) return 'Identity must contain at least 2 characters.';
+    }
+    if (name === 'email') {
+      if (!trimmed) return 'Please fill out this field.';
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(trimmed)) return 'Please enter a valid email address (e.g. alex@example.com).';
+    }
+    if (name === 'message') {
+      if (!trimmed) return 'Please fill out this field.';
+      if (trimmed.length < 5) return 'Message payload must contain at least 5 characters.';
+    }
+    return '';
+  };
+
   const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (status === 'error') {
+      setStatus('idle');
+      setErrorMessage('');
+    }
+    if (touched[name]) {
+      const error = validate(name, value);
+      setErrors((prev) => ({ ...prev, [name]: error }));
+    }
+  };
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    setTouched((prev) => ({ ...prev, [name]: true }));
+    const error = validate(name, value);
+    setErrors((prev) => ({ ...prev, [name]: error }));
   };
 
   const encode = (data) => {
@@ -20,9 +56,30 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+    // Validate all fields
+    const nameErr = validate('name', formData.name);
+    const emailErr = validate('email', formData.email);
+    const messageErr = validate('message', formData.message);
+
+    const newErrors = {
+      name: nameErr,
+      email: emailErr,
+      message: messageErr
+    };
+
+    setErrors(newErrors);
+    setTouched({ name: true, email: true, message: true });
+
+    if (nameErr || emailErr || messageErr) {
       setStatus('error');
-      setErrorMessage('All fields are required. Please enter your name, email, and message.');
+      setErrorMessage('TRANSMISSION_REJECTED // Please complete all required fields.');
+      if (nameErr) {
+        document.getElementById('name')?.focus();
+      } else if (emailErr) {
+        document.getElementById('email')?.focus();
+      } else if (messageErr) {
+        document.getElementById('message')?.focus();
+      }
       return;
     }
 
@@ -39,6 +96,8 @@ export default function Contact() {
       if (response.ok) {
         setStatus('success');
         setFormData({ name: '', email: '', message: '' });
+        setErrors({});
+        setTouched({});
       } else {
         throw new Error('Netlify form submission failed');
       }
@@ -47,6 +106,8 @@ export default function Contact() {
       console.warn('Form submission encountered an issue or is running on local server:', err);
       // For local testing, we still show the terminal success receipt
       setStatus('success');
+      setErrors({});
+      setTouched({});
     }
   };
 
@@ -175,6 +236,7 @@ export default function Contact() {
                   data-netlify="true"
                   netlify-honeypot="bot-field"
                   onSubmit={handleSubmit}
+                  noValidate
                   className="space-y-5"
                 >
                   <input type="hidden" name="form-name" value="contact" />
@@ -198,9 +260,15 @@ export default function Contact() {
                     </div>
                   )}
 
-                  <div>
-                    <label htmlFor="name" className="block font-mono text-xs text-slate-400 mb-1.5 uppercase">
-                      User Identity (Name)
+                  {/* Name Input Group */}
+                  <div className="group">
+                    <label htmlFor="name" className="font-mono text-xs text-slate-400 mb-1.5 uppercase flex items-center justify-between">
+                      <span>User Identity (Name)</span>
+                      {touched.name && errors.name && (
+                        <span className="text-rose-400 text-[10px] font-mono font-semibold uppercase tracking-wider">
+                          [FIELD_REQUIRED]
+                        </span>
+                      )}
                     </label>
                     <input
                       type="text"
@@ -209,14 +277,42 @@ export default function Contact() {
                       required
                       value={formData.name}
                       onChange={handleChange}
+                      onBlur={handleBlur}
+                      onInvalid={(e) => e.preventDefault()}
                       placeholder="e.g. Alex Mercer"
-                      className="w-full px-4 py-3 rounded-lg bg-slate-900/80 border border-slate-800 focus:border-cyber text-slate-100 placeholder-slate-600 text-sm font-sans focus:outline-none focus:ring-1 focus:ring-cyber transition-colors"
+                      className={`w-full px-4 py-3 rounded-lg bg-slate-900/80 text-slate-100 placeholder-slate-600 text-sm font-sans focus:outline-none transition-all duration-200 ${
+                        touched.name && errors.name
+                          ? 'border border-rose-500/70 focus:border-rose-400 focus:ring-1 focus:ring-rose-500/50 shadow-[0_0_15px_rgba(244,63,94,0.15)]'
+                          : 'border border-slate-800 focus:border-cyber focus:ring-1 focus:ring-cyber hover:border-slate-700'
+                      }`}
                     />
+                    {touched.name && errors.name && (
+                      <div
+                        role="alert"
+                        className="relative mt-2.5 flex items-center gap-2 px-3.5 py-2 rounded-lg bg-[#0c1427]/95 border border-rose-500/70 shadow-[0_0_20px_rgba(244,63,94,0.25)] group-hover:border-rose-400 group-hover:shadow-[0_0_25px_rgba(244,63,94,0.35)] backdrop-blur-md transition-all duration-200 animate-in fade-in slide-in-from-top-1"
+                      >
+                        <div className="absolute -top-1.5 left-5 w-2.5 h-2.5 bg-[#0c1427] border-t border-l border-rose-500/70 group-hover:border-rose-400 rotate-45 transition-colors" />
+                        <span className="relative flex h-2 w-2 flex-shrink-0">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75" />
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500" />
+                        </span>
+                        <div className="font-mono text-xs flex flex-wrap items-center gap-1.5">
+                          <span className="text-rose-400 font-bold tracking-wider">// WARNING:</span>
+                          <span className="text-slate-200 font-sans">{errors.name}</span>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
-                  <div>
-                    <label htmlFor="email" className="block font-mono text-xs text-slate-400 mb-1.5 uppercase">
-                      Comm Channel (Email)
+                  {/* Email Input Group */}
+                  <div className="group">
+                    <label htmlFor="email" className="font-mono text-xs text-slate-400 mb-1.5 uppercase flex items-center justify-between">
+                      <span>Comm Channel (Email)</span>
+                      {touched.email && errors.email && (
+                        <span className="text-rose-400 text-[10px] font-mono font-semibold uppercase tracking-wider">
+                          [FIELD_REQUIRED]
+                        </span>
+                      )}
                     </label>
                     <input
                       type="email"
@@ -225,14 +321,42 @@ export default function Contact() {
                       required
                       value={formData.email}
                       onChange={handleChange}
+                      onBlur={handleBlur}
+                      onInvalid={(e) => e.preventDefault()}
                       placeholder="alex@example.com"
-                      className="w-full px-4 py-3 rounded-lg bg-slate-900/80 border border-slate-800 focus:border-cyber text-slate-100 placeholder-slate-600 text-sm font-sans focus:outline-none focus:ring-1 focus:ring-cyber transition-colors"
+                      className={`w-full px-4 py-3 rounded-lg bg-slate-900/80 text-slate-100 placeholder-slate-600 text-sm font-sans focus:outline-none transition-all duration-200 ${
+                        touched.email && errors.email
+                          ? 'border border-rose-500/70 focus:border-rose-400 focus:ring-1 focus:ring-rose-500/50 shadow-[0_0_15px_rgba(244,63,94,0.15)]'
+                          : 'border border-slate-800 focus:border-cyber focus:ring-1 focus:ring-cyber hover:border-slate-700'
+                      }`}
                     />
+                    {touched.email && errors.email && (
+                      <div
+                        role="alert"
+                        className="relative mt-2.5 flex items-center gap-2 px-3.5 py-2 rounded-lg bg-[#0c1427]/95 border border-rose-500/70 shadow-[0_0_20px_rgba(244,63,94,0.25)] group-hover:border-rose-400 group-hover:shadow-[0_0_25px_rgba(244,63,94,0.35)] backdrop-blur-md transition-all duration-200 animate-in fade-in slide-in-from-top-1"
+                      >
+                        <div className="absolute -top-1.5 left-5 w-2.5 h-2.5 bg-[#0c1427] border-t border-l border-rose-500/70 group-hover:border-rose-400 rotate-45 transition-colors" />
+                        <span className="relative flex h-2 w-2 flex-shrink-0">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75" />
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500" />
+                        </span>
+                        <div className="font-mono text-xs flex flex-wrap items-center gap-1.5">
+                          <span className="text-rose-400 font-bold tracking-wider">// WARNING:</span>
+                          <span className="text-slate-200 font-sans">{errors.email}</span>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
-                  <div>
-                    <label htmlFor="message" className="block font-mono text-xs text-slate-400 mb-1.5 uppercase">
-                      Data Payload (Message)
+                  {/* Message Input Group */}
+                  <div className="group">
+                    <label htmlFor="message" className="font-mono text-xs text-slate-400 mb-1.5 uppercase flex items-center justify-between">
+                      <span>Data Payload (Message)</span>
+                      {touched.message && errors.message && (
+                        <span className="text-rose-400 text-[10px] font-mono font-semibold uppercase tracking-wider">
+                          [FIELD_REQUIRED]
+                        </span>
+                      )}
                     </label>
                     <textarea
                       id="message"
@@ -241,9 +365,31 @@ export default function Contact() {
                       required
                       value={formData.message}
                       onChange={handleChange}
+                      onBlur={handleBlur}
+                      onInvalid={(e) => e.preventDefault()}
                       placeholder="Hello Sailesh, I'd like to talk about..."
-                      className="w-full px-4 py-3 rounded-lg bg-slate-900/80 border border-slate-800 focus:border-cyber text-slate-100 placeholder-slate-600 text-sm font-sans focus:outline-none focus:ring-1 focus:ring-cyber transition-colors resize-none"
+                      className={`w-full px-4 py-3 rounded-lg bg-slate-900/80 text-slate-100 placeholder-slate-600 text-sm font-sans focus:outline-none transition-all duration-200 resize-none ${
+                        touched.message && errors.message
+                          ? 'border border-rose-500/70 focus:border-rose-400 focus:ring-1 focus:ring-rose-500/50 shadow-[0_0_15px_rgba(244,63,94,0.15)]'
+                          : 'border border-slate-800 focus:border-cyber focus:ring-1 focus:ring-cyber hover:border-slate-700'
+                      }`}
                     />
+                    {touched.message && errors.message && (
+                      <div
+                        role="alert"
+                        className="relative mt-2.5 flex items-center gap-2 px-3.5 py-2 rounded-lg bg-[#0c1427]/95 border border-rose-500/70 shadow-[0_0_20px_rgba(244,63,94,0.25)] group-hover:border-rose-400 group-hover:shadow-[0_0_25px_rgba(244,63,94,0.35)] backdrop-blur-md transition-all duration-200 animate-in fade-in slide-in-from-top-1"
+                      >
+                        <div className="absolute -top-1.5 left-5 w-2.5 h-2.5 bg-[#0c1427] border-t border-l border-rose-500/70 group-hover:border-rose-400 rotate-45 transition-colors" />
+                        <span className="relative flex h-2 w-2 flex-shrink-0">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75" />
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500" />
+                        </span>
+                        <div className="font-mono text-xs flex flex-wrap items-center gap-1.5">
+                          <span className="text-rose-400 font-bold tracking-wider">// WARNING:</span>
+                          <span className="text-slate-200 font-sans">{errors.message}</span>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   <button
